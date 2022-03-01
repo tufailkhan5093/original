@@ -45,6 +45,12 @@ class ProductController extends Controller
         $product->desc=$request->desc;
         $product->category_id=$request->category_id;
         $product->user_id=Auth::user()->id;
+
+        $fileName = time().'.'.$request->image->extension();  
+   
+        $request->image->move(public_path('products'), $fileName);
+        $product->image=$fileName;
+        
         $product->save();
         return response()->json(['data'=>$product,'status'=>true]);
     }

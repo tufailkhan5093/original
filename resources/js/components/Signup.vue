@@ -20,7 +20,7 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Name</label>
-                    <input v-model="product.name" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    <input v-model="product.name" type="text" class="form-control" id="exampleInputEmail1" placeholder="Email">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Email</label>
@@ -40,6 +40,10 @@
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
               </form>
+               <router-link to="/login" class="nav-link">
+                 
+                  <a class="btn btn-info">Login</a>
+                </router-link>
             </div>
             <!-- /.card -->
 
@@ -76,9 +80,7 @@ export default {
                         if (response.data.status == true) {
                             window.localStorage.setItem('access_token', response.data.token.token);
                         // window.location.href = 'http://localhost:8000/';
-                         this.$router.push({
-                        name: 'home'
-                        });
+                        this.$router.push({name: 'home'})
                         
                        
                     }

@@ -20,6 +20,7 @@
                     <th>Price</th>
                     <th>Desc</th>
                     <th>Category</th>
+                    <th>Image</th>
                    
                     <th>Created At</th>
                     <th>Action</th>
@@ -31,6 +32,7 @@
                     <td>{{cat.name}}</td>
                     <td>{{cat.price}}</td>
                     <td>{{cat.desc}}</td>
+                    <td><img width="40px" :src="'http://localhost:8000/products/'+cat.image"></td>
                     <td>{{cat.category.name}}</td>
                    
                     <td>{{cat.created_at}}</td>

@@ -172,7 +172,12 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-         
+         <li class="nav-item">
+                <router-link to="/" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Home</p>
+                </router-link>
+              </li>
        
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -226,7 +231,15 @@
            
             </ul>
 
+             <li class="nav-item">
+                <a @click="logout" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Logout</p>
+                </a>
+              </li>
+
           </li>
+
     
         
    
@@ -239,5 +252,33 @@
 </div>
 </template>
 <script>
-    export default {}
+    export default {
+       methods: {
+            logout() {
+            
+                 let tokenStr = localStorage.getItem("access_token");
+                console.log(tokenStr);
+                 this.axios
+            .get('http://localhost:8000/api/logout', {
+                headers: {
+                    "Authorization": `Bearer ${tokenStr}`
+                }
+            })
+             .then(response => {
+                        console.log(response);
+                        if (response.data.status == true) {
+                          localStorage.removeItem("access_token");
+                        // window.location.href = 'http://localhost:8000/';
+                         this.$router.push({
+                        name: 'login'
+                        });
+                       
+                       
+                    }
+                    })
+            .catch(err => console.log(err))
+                    .finally(() => this.loading = false)
+            }
+        }
+    }
 </script>

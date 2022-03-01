@@ -36,6 +36,11 @@
                   </div>
 
                    <div class="form-group">
+                    <label for="exampleInputPassword1">Image</label>
+                   <input type="file" class="form-control" v-on:change="onChange">
+                  </div>
+
+                   <div class="form-group">
                      <label for="exampleInputPassword1">Select Category</label>
                    <select v-model="product.category_id" class="form-control">
                      <option>Select Category</option>
@@ -84,6 +89,7 @@ export default {
                     name:'',
                     price:'',
                     desc:'',
+                    image:'',
                     category_id:''
                    
                     // image:''
@@ -99,6 +105,9 @@ export default {
         },
          methods: {
 
+            onChange(e) {
+                this.product.image = e.target.files[0];
+            },
               showBlogs: function () {
                let tokenStr = localStorage.getItem("access_token");
                  this.axios
@@ -131,6 +140,7 @@ export default {
                 formData.append('name', this.product.name);
                 formData.append('price', this.product.price);
                 formData.append('desc', this.product.desc);
+                formData.append('image', this.product.image);
                 formData.append('category_id',this.product.category_id);
 
                  let tokenStr = localStorage.getItem("access_token");

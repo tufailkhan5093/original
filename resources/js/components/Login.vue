@@ -21,7 +21,7 @@
                  
                   <div class="form-group">
                     <label for="exampleInputPassword1">Email</label>
-                    <input v-model="product.email" type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <input v-model="product.email" type="text" class="form-control" id="exampleInputPassword1" placeholder="Email">
                   </div>
 
                     <div class="form-group">
